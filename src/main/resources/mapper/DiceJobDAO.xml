@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alaitp.jobdescriptionapi.mapper.DiceJobDAO">
+  <resultMap id="BaseResultMap" type="com.alaitp.jobdescriptionapi.entity.DiceJob">
+    <id column="job_id" jdbcType="VARCHAR" property="jobId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="job_desc" jdbcType="VARCHAR" property="jobDesc" />
+    <result column="raw_desc" jdbcType="VARCHAR" property="rawDesc" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="salary" jdbcType="VARCHAR" property="salary" />
+    <result column="employment_type" jdbcType="VARCHAR" property="employmentType" />
+    <result column="remote_available" jdbcType="VARCHAR" property="remoteAvailable" />
+    <result column="job_date" jdbcType="VARCHAR" property="jobDate" />
+    <result column="crawled_time" jdbcType="TIMESTAMP" property="crawledTime" />
+  </resultMap>
+  <resultMap id="jobResultMap" type="com.alaitp.jobdescriptionapi.entity.DiceJob">
+    <id column="job_id" jdbcType="VARCHAR" property="jobId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="job_desc" jdbcType="VARCHAR" property="jobDesc" />
+  </resultMap>
+  <resultMap id="diceResultMap" type="com.alaitp.jobdescriptionapi.entity.JobDescription">
+    <id column="job_id" jdbcType="VARCHAR" property="jobId" />
+    <result column="title" jdbcType="VARCHAR" property="jobTitle" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="job_desc" jdbcType="VARCHAR" property="jobDescriptionText" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    job_id, title, company, "location", tags, category, job_desc, raw_desc, link, "source", 
+    "state", salary, employment_type, remote_available, job_date, crawled_time
+  </sql>
+  <sql id="Column_List">
+    job_id, title, company, tags, job_desc
+  </sql>
+  <select id="selectByJobId" parameterType="java.lang.String" resultMap="jobResultMap">
+    select
+    <include refid="Column_List" />
+    from "dice_job"
+    where job_id = #{jobId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM "dice_job"
+    WHERE job_id = #{jobId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectDiceByJobId" parameterType="java.lang.String" resultMap="diceResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM "dice_job"
+    WHERE job_id = #{jobId,jdbcType=VARCHAR}
+    LIMIT 10000
+  </select>
+  <select id="findJobDescriptionsByJobTitle" parameterType="java.lang.String" resultMap="diceResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM "dice_job"
+    WHERE LOWER(title) = LOWER(#{jobTitle,jdbcType=VARCHAR})
+    LIMIT 10000
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from "dice_job"
+    where job_id = #{jobId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.alaitp.jobdescriptionapi.entity.DiceJob">
+    <selectKey keyProperty="jobId" order="AFTER" resultType="java.lang.String">
+      PostgreSQL
+    </selectKey>
+    insert into "dice_job" (title, company, "location",
+      tags, category, job_desc, 
+      raw_desc, link, "source", 
+      "state", salary, employment_type, 
+      remote_available, job_date, crawled_time
+      )
+    values (#{title,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{tags,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{jobDesc,jdbcType=VARCHAR}, 
+      #{rawDesc,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, #{employmentType,jdbcType=VARCHAR}, 
+      #{remoteAvailable,jdbcType=VARCHAR}, #{jobDate,jdbcType=VARCHAR}, #{crawledTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.alaitp.jobdescriptionapi.entity.DiceJob">
+    <selectKey keyProperty="jobId" order="AFTER" resultType="java.lang.String">
+      PostgreSQL
+    </selectKey>
+    insert into "dice_job"
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="location != null">
+        "location",
+      </if>
+      <if test="tags != null">
+        tags,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="jobDesc != null">
+        job_desc,
+      </if>
+      <if test="rawDesc != null">
+        raw_desc,
+      </if>
+      <if test="link != null">
+        link,
+      </if>
+      <if test="source != null">
+        "source",
+      </if>
+      <if test="state != null">
+        "state",
+      </if>
+      <if test="salary != null">
+        salary,
+      </if>
+      <if test="employmentType != null">
+        employment_type,
+      </if>
+      <if test="remoteAvailable != null">
+        remote_available,
+      </if>
+      <if test="jobDate != null">
+        job_date,
+      </if>
+      <if test="crawledTime != null">
+        crawled_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDesc != null">
+        #{jobDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="rawDesc != null">
+        #{rawDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="employmentType != null">
+        #{employmentType,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteAvailable != null">
+        #{remoteAvailable,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDate != null">
+        #{jobDate,jdbcType=VARCHAR},
+      </if>
+      <if test="crawledTime != null">
+        #{crawledTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alaitp.jobdescriptionapi.entity.DiceJob">
+    update "dice_job"
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        "location" = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDesc != null">
+        job_desc = #{jobDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="rawDesc != null">
+        raw_desc = #{rawDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        "source" = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        "state" = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null">
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="employmentType != null">
+        employment_type = #{employmentType,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteAvailable != null">
+        remote_available = #{remoteAvailable,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDate != null">
+        job_date = #{jobDate,jdbcType=VARCHAR},
+      </if>
+      <if test="crawledTime != null">
+        crawled_time = #{crawledTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where job_id = #{jobId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alaitp.jobdescriptionapi.entity.DiceJob">
+    update "dice_job"
+    set title = #{title,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      "location" = #{location,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
+      job_desc = #{jobDesc,jdbcType=VARCHAR},
+      raw_desc = #{rawDesc,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      "source" = #{source,jdbcType=VARCHAR},
+      "state" = #{state,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      employment_type = #{employmentType,jdbcType=VARCHAR},
+      remote_available = #{remoteAvailable,jdbcType=VARCHAR},
+      job_date = #{jobDate,jdbcType=VARCHAR},
+      crawled_time = #{crawledTime,jdbcType=TIMESTAMP}
+    where job_id = #{jobId,jdbcType=VARCHAR}
+  </update>
+</mapper>
