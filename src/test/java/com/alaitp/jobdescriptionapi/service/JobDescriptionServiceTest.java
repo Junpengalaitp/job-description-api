@@ -5,6 +5,7 @@ import com.alaitp.jobdescriptionapi.entity.JobDescription;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,5 +28,11 @@ class JobDescriptionServiceTest extends BaseJunitTest {
     void findJobsByTitle() {
         Map<String, JobDescription> jobDescriptions = jobDescriptionService.findJobsByTitle("software engineer");
         assertTrue(jobDescriptions.size() > 1);
+    }
+
+    @Test
+    void jobDescriptionsInDB() {
+        List<JobDescription> jobDescriptionList = jobDescriptionService.JobDescriptionsInDB("devops");
+        assertEquals(6, jobDescriptionList.size());
     }
 }

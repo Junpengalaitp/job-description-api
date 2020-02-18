@@ -19,4 +19,6 @@ public interface DiceJobDAO extends MyBatisBaseDao<DiceJob, String> {
     JobDescription selectDiceByJobId(String jobId);
 
     List<JobDescription> findJobDescriptionsByJobTitle(@NonNull String jobTitle);
+
+    List<JobDescription> notCachedJobDescriptionsByJobTitle(String jobTitle, List<String> cachedIds);
 }

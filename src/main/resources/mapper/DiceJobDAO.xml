@@ -64,8 +64,20 @@
     SELECT
     <include refid="Base_Column_List" />
     FROM "dice_job"
-    WHERE LOWER(title) = LOWER(#{jobTitle,jdbcType=VARCHAR})
+    WHERE LOWER(title) = LOWER(#{jobTitle, jdbcType=VARCHAR})
     LIMIT 10000
+  </select>
+  <select id="notCachedJobDescriptionsByJobTitle"
+          resultType="com.alaitp.jobdescriptionapi.entity.JobDescription">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM "dice_job"
+    WHERE LOWER(title) = LOWER(#{jobTitle, jdbcType=VARCHAR})
+    and job_id not in
+    <foreach item="item" index="index" collection="cachedIds"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from "dice_job"
