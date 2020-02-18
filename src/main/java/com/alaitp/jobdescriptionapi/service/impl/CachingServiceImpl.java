@@ -23,6 +23,7 @@ public class CachingServiceImpl implements CachingService {
     @Override
     public void cacheJobDescriptions(Map<String, JobDescription> jobDescriptionMap, String jobTitle) {
         int cached = 0;
+        jobTitle = jobTitle.toLowerCase();
         for (var entry: jobDescriptionMap.entrySet()) {
             if (hashOperations.hasKey(jobTitle, entry.getKey())) {
                 continue;
@@ -35,6 +36,7 @@ public class CachingServiceImpl implements CachingService {
 
     @Override
     public List<JobDescription> cachedJobTitle(String jobTitle) {
+        jobTitle = jobTitle.toLowerCase();
         List<Object> jobDescriptionCache = hashOperations.values(jobTitle);
         List<JobDescription> jobDescriptionList = new ArrayList<>();
         for (var jobDesc: jobDescriptionCache) {
