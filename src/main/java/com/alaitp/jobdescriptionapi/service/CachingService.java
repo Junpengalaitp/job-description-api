@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface CachingService {
-    void cacheJobDescriptions(Map<String, JobDescription> jobDescription, String jobTitle);
+    void cacheJobDescriptions(Map<String, Map<String, String>> jobDescription, String jobTitle);
 
     List<JobDescription> cachedJobTitle(String title);
 }

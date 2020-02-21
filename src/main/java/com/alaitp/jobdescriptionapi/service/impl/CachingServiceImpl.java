@@ -21,7 +21,7 @@ public class CachingServiceImpl implements CachingService {
     private HashOperations<String, String, Object> hashOperations;
 
     @Override
-    public void cacheJobDescriptions(Map<String, JobDescription> jobDescriptionMap, String jobTitle) {
+    public void cacheJobDescriptions(Map<String,  Map<String, String>> jobDescriptionMap, String jobTitle) {
         int cached = 0;
         jobTitle = jobTitle.toLowerCase();
         for (var entry: jobDescriptionMap.entrySet()) {
@@ -37,10 +37,12 @@ public class CachingServiceImpl implements CachingService {
     @Override
     public List<JobDescription> cachedJobTitle(String jobTitle) {
         jobTitle = jobTitle.toLowerCase();
-        List<Object> jobDescriptionCache = hashOperations.values(jobTitle);
+        Map<String, Object> jobDescriptionCache = hashOperations.entries(jobTitle);
         List<JobDescription> jobDescriptionList = new ArrayList<>();
-        for (var jobDesc: jobDescriptionCache) {
-            jobDescriptionList.add(fromObject(jobDesc, JobDescription.class));
+        for (var entry: jobDescriptionCache.entrySet()) {
+            JobDescription jobDescription = fromObject(entry.getValue(), JobDescription.class);
+            jobDescription.setJobId(entry.getKey());
+            jobDescriptionList.add(jobDescription);
         }
         log.info("selected {} jobs with title: {} from cache", jobDescriptionCache.size(), jobTitle);
         return jobDescriptionList;

@@ -73,7 +73,7 @@
     <include refid="Base_Column_List" />
     FROM "dice_job"
     WHERE LOWER(title) = LOWER(#{jobTitle, jdbcType=VARCHAR})
-    and job_id not in
+    AND job_id NOT IN
     <foreach item="item" index="index" collection="cachedIds"
              open="(" separator="," close=")">
       #{item}

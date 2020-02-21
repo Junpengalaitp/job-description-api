@@ -30,11 +30,11 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
     }
 
     @Override
-    public Map<String, JobDescription> findJobsByTitle(@NonNull String jobTitle) {
+    public Map<String, Map<String, String>> findJobsByTitle(@NonNull String jobTitle) {
         List<JobDescription> jobDescriptionList = JobDescriptionsInDB(jobTitle);
-        Map<String, JobDescription> jobDescriptionMap = new HashMap<>();
+        Map<String, Map<String, String>> jobDescriptionMap = new HashMap<>();
         for (JobDescription jobDescription: jobDescriptionList) {
-            jobDescriptionMap.put(jobDescription.getJobId(), jobDescription);
+            jobDescriptionMap.put(jobDescription.getJobId(), jobDescription.toNoIdMap());
         }
         cachingService.cacheJobDescriptions(jobDescriptionMap, jobTitle);
         return jobDescriptionMap;

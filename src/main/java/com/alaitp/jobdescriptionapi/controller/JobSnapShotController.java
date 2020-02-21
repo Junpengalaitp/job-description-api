@@ -40,7 +40,7 @@ public class JobSnapShotController {
     @GetMapping(value = "/job-list/{jobTitle}", produces = "application/json")
     public ResponseEntity<?> jobList(@PathVariable @NonNull String jobTitle) {
         log.info("received path variable: {}", jobTitle);
-        Map<String, JobDescription> jobDescriptionMap = jobDescriptionService.findJobsByTitle(jobTitle);
+        Map<String, Map<String, String>> jobDescriptionMap = jobDescriptionService.findJobsByTitle(jobTitle);
         log.info("Get job list for job title: {} success, size: {}", jobTitle, jobDescriptionMap.size());
         return ResponseEntity.ok().body(jobDescriptionMap);
     }
