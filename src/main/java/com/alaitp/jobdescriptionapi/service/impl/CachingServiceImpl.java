@@ -17,21 +17,22 @@ import static com.alaitp.jobdescriptionapi.utils.JsonUtil.fromObject;
 @Log4j2
 public class CachingServiceImpl implements CachingService {
 
+
     @Autowired
     private HashOperations<String, String, Object> hashOperations;
 
     @Override
-    public void cacheJobDescriptions(Map<String,  Map<String, String>> jobDescriptionMap, String jobTitle) {
+    public void cacheJobsByRequestId(Map<String,  Map<String, String>> jobDescriptionMap, String requestId) {
         int cached = 0;
-        jobTitle = jobTitle.toLowerCase();
+        requestId = requestId.toLowerCase();
         for (var entry: jobDescriptionMap.entrySet()) {
-            if (hashOperations.hasKey(jobTitle, entry.getKey())) {
+            if (hashOperations.hasKey(requestId, entry.getKey())) {
                 continue;
             }
-            hashOperations.put(jobTitle, entry.getKey(), entry.getValue());
+            hashOperations.put(requestId, entry.getKey(), entry.getValue());
             cached++;
         }
-        log.info("cached {} jobs in for job title: {} in redis", cached, jobTitle);
+        log.info("cached {} jobs in for request id: {} in redis", cached, requestId);
     }
 
     @Override

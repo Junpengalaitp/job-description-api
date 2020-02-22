@@ -26,7 +26,8 @@ class JobDescriptionServiceTest extends BaseJunitTest {
 
     @Test
     void findJobsByTitle() {
-        Map<String, Map<String, String>> jobDescriptions = jobDescriptionService.findJobsByTitle("software engineer");
+        Map<String, Map<String, String>> jobDescriptions = jobDescriptionService.findJobsByTitle("software engineer", "testRequestId");
+        System.out.println(jobDescriptions);
         assertTrue(jobDescriptions.size() > 1);
     }
 

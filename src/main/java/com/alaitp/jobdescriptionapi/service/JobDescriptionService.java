@@ -9,7 +9,7 @@ public interface JobDescriptionService {
 
     JobDescription findOneById(String jobId);
 
-    Map<String, Map<String, String>> findJobsByTitle(String jobTitle);
+    Map<String, Map<String, String>> findJobsByTitle(String jobTitle, String requestId);
 
     List<JobDescription> JobDescriptionsInDB(String jobTitle);
 

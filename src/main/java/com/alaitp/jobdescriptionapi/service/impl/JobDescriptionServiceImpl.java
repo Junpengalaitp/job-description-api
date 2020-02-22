@@ -9,7 +9,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,35 +29,23 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
     }
 
     @Override
-    public Map<String, Map<String, String>> findJobsByTitle(@NonNull String jobTitle) {
+    public Map<String, Map<String, String>> findJobsByTitle(@NonNull String jobTitle, String requestId) {
         List<JobDescription> jobDescriptionList = JobDescriptionsInDB(jobTitle);
         Map<String, Map<String, String>> jobDescriptionMap = new HashMap<>();
         for (JobDescription jobDescription: jobDescriptionList) {
             jobDescriptionMap.put(jobDescription.getJobId(), jobDescription.toNoIdMap());
         }
-        cachingService.cacheJobDescriptions(jobDescriptionMap, jobTitle);
+        cachingService.cacheJobsByRequestId(jobDescriptionMap, requestId);
         return jobDescriptionMap;
     }
 
     /**
-     * job descriptions in cache and database
+     * job descriptions in database
      */
     @Override
     public List<JobDescription> JobDescriptionsInDB(String jobTitle) {
-        List<JobDescription> jobDescriptionsCache = cachingService.cachedJobTitle(jobTitle);
-        List<String> cachedIds = new ArrayList<>();
-        for (var jobDesc: jobDescriptionsCache) {
-            cachedIds.add(jobDesc.getJobId());
-        }
-        List<JobDescription> jobDescriptionSQL;
-        if (cachedIds.size() > 0) {
-            jobDescriptionSQL = diceJobDAO.notCachedJobDescriptionsByJobTitle(jobTitle, cachedIds);
-        } else {
-            jobDescriptionSQL = diceJobDAO.findJobDescriptionsByJobTitle(jobTitle);
-        }
+        List<JobDescription> jobDescriptionSQL = diceJobDAO.findJobDescriptionsByJobTitle(jobTitle);
         log.info("selected {} jobs with title: {} from SQL", jobDescriptionSQL.size(), jobTitle);
-        List<JobDescription> jobDescriptionList = new ArrayList<>(jobDescriptionsCache);
-        jobDescriptionList.addAll(jobDescriptionSQL);
-        return jobDescriptionList;
+        return jobDescriptionSQL;
     }
 }

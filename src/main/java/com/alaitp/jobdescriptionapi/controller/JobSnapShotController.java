@@ -5,7 +5,6 @@ import com.alaitp.jobdescriptionapi.service.JobDescriptionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,10 +36,10 @@ public class JobSnapShotController {
         return ResponseEntity.ok().body(jobDesc);
     }
 
-    @GetMapping(value = "/job-list/{jobTitle}", produces = "application/json")
-    public ResponseEntity<?> jobList(@PathVariable @NonNull String jobTitle) {
-        log.info("received path variable: {}", jobTitle);
-        Map<String, Map<String, String>> jobDescriptionMap = jobDescriptionService.findJobsByTitle(jobTitle);
+    @GetMapping(value = "/job-list/{jobTitle}/{requestId}", produces = "application/json")
+    public ResponseEntity<?> jobList(@PathVariable String jobTitle, @PathVariable String requestId) {
+        log.info("received path variable: {}, requestId: {}", jobTitle, requestId);
+        Map<String, Map<String, String>> jobDescriptionMap = jobDescriptionService.findJobsByTitle(jobTitle, requestId);
         log.info("Get job list for job title: {} success, size: {}", jobTitle, jobDescriptionMap.size());
         return ResponseEntity.ok().body(jobDescriptionMap);
     }
