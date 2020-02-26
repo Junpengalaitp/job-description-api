@@ -17,7 +17,6 @@ import static com.alaitp.jobdescriptionapi.utils.JsonUtil.fromObject;
 @Log4j2
 public class CachingServiceImpl implements CachingService {
 
-
     @Autowired
     private HashOperations<String, String, Object> hashOperations;
 
