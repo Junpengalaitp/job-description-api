@@ -81,7 +81,7 @@ public final class JsonUtil {
      * Convert JSON to HashMap
      */
     public static Map<String, Object> fromJson(String json) {
-        TypeReference<Map<String, Object>> typeRef = new TypeReference<Map<String, Object>>() {
+        TypeReference<Map<String, Object>> typeRef = new TypeReference<>() {
         };
         Map<String, Object> map = new HashMap<>();
         try {
