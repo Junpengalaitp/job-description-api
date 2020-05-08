@@ -43,14 +43,14 @@
   <select id="selectByJobId" parameterType="java.lang.String" resultMap="jobResultMap">
     select
     <include refid="Column_List" />
-    from "dice_job"
+    from dice_job
     where job_id = #{jobId,jdbcType=VARCHAR}
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
-    FROM "dice_job"
+    FROM dice_job
     WHERE job_id = #{jobId,jdbcType=VARCHAR}
   </select>
   <select id="selectDiceByJobId" parameterType="java.lang.String" resultMap="diceResultMap">
@@ -63,7 +63,7 @@
   <select id="findJobDescriptionsByJobTitle" parameterType="java.lang.String" resultMap="diceResultMap">
     SELECT
     <include refid="Base_Column_List" />
-    FROM "dice_job"
+    FROM dice_job
     WHERE title ILIKE CONCAT(CONCAT('% ', #{jobTitle, jdbcType=VARCHAR}), ' %')
     LIMIT 100
   </select>
@@ -71,7 +71,7 @@
           resultType="com.alaitp.jobdescriptionapi.entity.JobDescription">
     SELECT
     <include refid="Base_Column_List" />
-    FROM "dice_job"
+    FROM dice_job
     WHERE title ILIKE CONCAT(CONCAT('% ', #{jobTitle, jdbcType=VARCHAR}), ' %')
     AND job_id NOT IN
     <foreach item="item" index="index" collection="cachedIds"
@@ -80,7 +80,7 @@
     </foreach>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from "dice_job"
+    delete from dice_job
     where job_id = #{jobId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.alaitp.jobdescriptionapi.entity.DiceJob">

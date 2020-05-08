@@ -18,11 +18,4 @@ class CachingServiceTest extends BaseJunitTest {
     void cacheJobDescriptions() {
 //        cachingService.cacheJobDescriptions();
     }
-
-    @Test
-    void cachedJobTitle() {
-        List<JobDescription> jobDescriptionList = cachingService.cachedJobTitle("devops");
-        System.out.println(jobDescriptionList);
-        assertEquals(6, jobDescriptionList.size());
-    }
 }

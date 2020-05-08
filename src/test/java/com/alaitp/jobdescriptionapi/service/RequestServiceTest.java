@@ -4,8 +4,6 @@ import com.alaitp.jobdescriptionapi.BaseJunitTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class RequestServiceTest extends BaseJunitTest {
 
     @Autowired
@@ -13,6 +11,6 @@ class RequestServiceTest extends BaseJunitTest {
 
     @Test
     void requestRemotive() {
-        requestService.requestRemotive();
+        requestService.searchRequestRemotive("python");
     }
 }

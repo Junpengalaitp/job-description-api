@@ -1,26 +1,29 @@
 package com.alaitp.jobdescriptionapi.service.impl;
 
+import com.alaitp.jobdescriptionapi.dto.RemotiveJob;
 import com.alaitp.jobdescriptionapi.service.RequestService;
-import com.alaitp.jobdescriptionapi.utils.JsonUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-import java.util.Map;
+import static com.alaitp.jobdescriptionapi.config.Constants.JOBS;
+import static com.alaitp.jobdescriptionapi.config.Constants.REMOTIVE_URL;
 
 @Service
 public class RequestServiceImpl implements RequestService {
+
     @Override
-    public void requestRemotive() {
+    public void searchRequestRemotive(String searchWord) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://remotive.io/api/remote-jobs";
+        String url = REMOTIVE_URL + searchWord;
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        Map<String, Object> jsonMap = JsonUtil.fromJson(response.getBody());
-        List<Map<String, Object>> jobList = (List<Map<String, Object>>) jsonMap.get("jobs");
-        for (Map<String, Object> job : jobList) {
-            System.out.println(job.get("title"));
+        JSONObject resJson = JSON.parseObject(response.getBody());
+        JSONArray jobArray = resJson.getJSONArray(JOBS);
+        for (RemotiveJob remotiveJob: jobArray.toJavaList(RemotiveJob.class)) {
+            System.out.println(remotiveJob.getTitle());
         }
-        System.out.println(jsonMap);
     }
 }

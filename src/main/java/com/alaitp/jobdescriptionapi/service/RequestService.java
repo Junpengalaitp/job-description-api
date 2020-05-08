@@ -1,5 +1,5 @@
 package com.alaitp.jobdescriptionapi.service;
 
 public interface RequestService {
-    void requestRemotive();
+    void searchRequestRemotive(String searchWord);
 }
