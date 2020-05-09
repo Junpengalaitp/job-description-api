@@ -1,8 +1,9 @@
 package com.alaitp.jobdescriptionapi.mapper;
 
+import com.alaitp.job.description.api.mapper.DiceJobDAO;
 import com.alaitp.jobdescriptionapi.BaseJunitTest;
-import com.alaitp.jobdescriptionapi.entity.DiceJob;
-import com.alaitp.jobdescriptionapi.entity.JobDescription;
+import com.alaitp.job.description.api.entity.DiceJob;
+import com.alaitp.job.description.api.entity.JobDescription;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

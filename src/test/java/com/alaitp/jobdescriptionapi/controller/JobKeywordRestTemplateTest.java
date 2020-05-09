@@ -1,5 +1,6 @@
 package com.alaitp.jobdescriptionapi.controller;
 
+import com.alaitp.job.description.api.controller.JobKeywordRestTemplate;
 import com.alaitp.jobdescriptionapi.BaseJunitTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

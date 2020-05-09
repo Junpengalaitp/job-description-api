@@ -1,21 +1,20 @@
 package com.alaitp.jobdescriptionapi.service;
 
+import com.alaitp.job.description.api.service.CachingService;
 import com.alaitp.jobdescriptionapi.BaseJunitTest;
-import com.alaitp.jobdescriptionapi.entity.JobDescription;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.springframework.beans.factory.annotation.Value;
 
 class CachingServiceTest extends BaseJunitTest {
+    @Value("${job.topic}")
+    private String topic;
 
     @Autowired
     private CachingService cachingService;
 
     @Test
-    void cacheJobDescriptions() {
-//        cachingService.cacheJobDescriptions();
+    void test() {
+        System.out.println(topic);
     }
 }

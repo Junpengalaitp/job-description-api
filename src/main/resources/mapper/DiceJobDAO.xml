@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alaitp.jobdescriptionapi.mapper.DiceJobDAO">
-  <resultMap id="BaseResultMap" type="com.alaitp.jobdescriptionapi.entity.DiceJob">
+<mapper namespace="com.alaitp.job.description.api.mapper.DiceJobDAO">
+  <resultMap id="BaseResultMap" type="com.alaitp.job.description.api.entity.DiceJob">
     <id column="job_id" jdbcType="VARCHAR" property="jobId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="company" jdbcType="VARCHAR" property="company" />
@@ -19,14 +19,14 @@
     <result column="job_date" jdbcType="VARCHAR" property="jobDate" />
     <result column="crawled_time" jdbcType="TIMESTAMP" property="crawledTime" />
   </resultMap>
-  <resultMap id="jobResultMap" type="com.alaitp.jobdescriptionapi.entity.DiceJob">
+  <resultMap id="jobResultMap" type="com.alaitp.job.description.api.entity.DiceJob">
     <id column="job_id" jdbcType="VARCHAR" property="jobId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="company" jdbcType="VARCHAR" property="company" />
     <result column="tags" jdbcType="VARCHAR" property="tags" />
     <result column="job_desc" jdbcType="VARCHAR" property="jobDesc" />
   </resultMap>
-  <resultMap id="diceResultMap" type="com.alaitp.jobdescriptionapi.entity.JobDescription">
+  <resultMap id="diceResultMap" type="com.alaitp.job.description.api.entity.JobDescription">
     <id column="job_id" jdbcType="VARCHAR" property="jobId" />
     <result column="title" jdbcType="VARCHAR" property="jobTitle" />
     <result column="company" jdbcType="VARCHAR" property="company" />
@@ -68,7 +68,7 @@
     LIMIT 100
   </select>
   <select id="notCachedJobDescriptionsByJobTitle"
-          resultType="com.alaitp.jobdescriptionapi.entity.JobDescription">
+          resultType="com.alaitp.job.description.api.entity.JobDescription">
     SELECT
     <include refid="Base_Column_List" />
     FROM dice_job
@@ -83,7 +83,7 @@
     delete from dice_job
     where job_id = #{jobId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.alaitp.jobdescriptionapi.entity.DiceJob">
+  <insert id="insert" parameterType="com.alaitp.job.description.api.entity.DiceJob">
     <selectKey keyProperty="jobId" order="AFTER" resultType="java.lang.String">
       PostgreSQL
     </selectKey>
@@ -100,7 +100,7 @@
       #{remoteAvailable,jdbcType=VARCHAR}, #{jobDate,jdbcType=VARCHAR}, #{crawledTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.alaitp.jobdescriptionapi.entity.DiceJob">
+  <insert id="insertSelective" parameterType="com.alaitp.job.description.api.entity.DiceJob">
     <selectKey keyProperty="jobId" order="AFTER" resultType="java.lang.String">
       PostgreSQL
     </selectKey>
@@ -200,7 +200,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.alaitp.jobdescriptionapi.entity.DiceJob">
+  <update id="updateByPrimaryKeySelective" parameterType="com.alaitp.job.description.api.entity.DiceJob">
     update "dice_job"
     <set>
       <if test="title != null">
@@ -251,7 +251,7 @@
     </set>
     where job_id = #{jobId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.alaitp.jobdescriptionapi.entity.DiceJob">
+  <update id="updateByPrimaryKey" parameterType="com.alaitp.job.description.api.entity.DiceJob">
     update "dice_job"
     set title = #{title,jdbcType=VARCHAR},
       company = #{company,jdbcType=VARCHAR},

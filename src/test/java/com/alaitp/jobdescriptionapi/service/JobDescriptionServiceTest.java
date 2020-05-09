@@ -1,7 +1,8 @@
 package com.alaitp.jobdescriptionapi.service;
 
+import com.alaitp.job.description.api.service.JobDescriptionService;
 import com.alaitp.jobdescriptionapi.BaseJunitTest;
-import com.alaitp.jobdescriptionapi.entity.JobDescription;
+import com.alaitp.job.description.api.entity.JobDescription;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
