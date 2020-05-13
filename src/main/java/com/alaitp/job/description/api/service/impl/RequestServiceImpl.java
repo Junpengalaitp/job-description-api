@@ -27,7 +27,7 @@ public class RequestServiceImpl implements RequestService {
         JSONObject resJson = JSON.parseObject(response.getBody());
         JSONArray jobArray = resJson.getJSONArray(JOBS);
         for (RemotiveJob remotiveJob: jobArray.toJavaList(RemotiveJob.class)) {
-            msgPublisher.sendMsg(remotiveJob.getTitle());
+            msgPublisher.sendMsg(JSON.toJSONString(remotiveJob));
         }
     }
 }
