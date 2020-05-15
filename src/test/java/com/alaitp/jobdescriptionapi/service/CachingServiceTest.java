@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 class CachingServiceTest extends BaseJunitTest {
-    @Value("${job.topic}")
+    @Value("${job.queue}")
     private String topic;
 
     @Autowired
