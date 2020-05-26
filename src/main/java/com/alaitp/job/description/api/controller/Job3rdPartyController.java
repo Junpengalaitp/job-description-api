@@ -1,5 +1,6 @@
 package com.alaitp.job.description.api.controller;
 
+import com.alaitp.job.description.api.Thread.JobTransitionThread;
 import com.alaitp.job.description.api.service.RequestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class Job3rdPartyController {
         log.info("received path variable: {}, requestId: {}", jobTitle, requestId);
         Map<String, Map<String, String>> jobDescriptionMap = requestService.searchRemotiveJobs(jobTitle, requestId);
         log.info("Get job list for job title: {} success, size: {}", jobTitle, jobDescriptionMap.size());
+        JobTransitionThread thread = new JobTransitionThread(jobDescriptionMap);
+        thread.start();
         return ResponseEntity.ok().body(jobDescriptionMap);
     }
 }
