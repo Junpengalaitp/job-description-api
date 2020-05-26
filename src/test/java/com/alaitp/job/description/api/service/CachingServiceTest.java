@@ -1,7 +1,6 @@
-package com.alaitp.jobdescriptionapi.service;
+package com.alaitp.job.description.api.service;
 
-import com.alaitp.job.description.api.service.CachingService;
-import com.alaitp.jobdescriptionapi.BaseJunitTest;
+import com.alaitp.job.description.api.BaseJunitTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

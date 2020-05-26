@@ -1,4 +1,4 @@
-package com.alaitp.jobdescriptionapi;
+package com.alaitp.job.description.api;
 
 import com.alaitp.job.description.api.JobDescriptionApiApplication;
 import org.junit.jupiter.api.extension.ExtendWith;

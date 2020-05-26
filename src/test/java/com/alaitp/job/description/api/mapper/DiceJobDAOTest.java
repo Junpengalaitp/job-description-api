@@ -1,7 +1,6 @@
-package com.alaitp.jobdescriptionapi.mapper;
+package com.alaitp.job.description.api.mapper;
 
-import com.alaitp.job.description.api.mapper.DiceJobDAO;
-import com.alaitp.jobdescriptionapi.BaseJunitTest;
+import com.alaitp.job.description.api.BaseJunitTest;
 import com.alaitp.job.description.api.entity.DiceJob;
 import com.alaitp.job.description.api.entity.JobDescription;
 import org.junit.jupiter.api.Test;
