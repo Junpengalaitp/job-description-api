@@ -9,14 +9,16 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class MsgPublisher {
-    @Value("${job.queue}")
-    private String jobTopic;
+    @Value("${job.exchange}")
+    private String jobExchange;
+    @Value("${job.key}")
+    private String jobKey;
 
     @Autowired
     private AmqpTemplate amqpTemplate;
 
     public void sendMsg(String msg) {
-        amqpTemplate.convertAndSend(jobTopic, msg);
+        amqpTemplate.convertAndSend(jobExchange, jobKey, msg);
         log.info("sent message: {}", msg);
     }
 }
