@@ -18,8 +18,9 @@ public class RemotiveJob extends BaseJobDto {
     private String salary;
     private String companyLogoUrl;
 
-    public Map<String, String> toNoIdMap() {
+    public Map<String, String> toNoIdMap(String requestId) {
         Map<String, String> jobDescMap = new HashMap<>();
+        jobDescMap.put("requestId", requestId);
         jobDescMap.put("jobTitle", title);
         jobDescMap.put("company", companyName);
         jobDescMap.put("tags", String.join(",", tags));
