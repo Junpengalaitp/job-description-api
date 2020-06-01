@@ -34,7 +34,6 @@ public class RequestServiceImpl implements RequestService {
         JSONArray jobArray = resJson.getJSONArray(JOBS);
         Map<String, Map<String, String>> jobDescriptionMap = new HashMap<>();
         for (RemotiveJob remotiveJob: jobArray.toJavaList(RemotiveJob.class)) {
-//            msgPublisher.sendMsg(JSON.toJSONString(remotiveJob));
             jobDescriptionMap.put("remotive_" + remotiveJob.getId(), remotiveJob.toNoIdMap(requestId));
         }
         cachingService.cacheJobsByRequestId(jobDescriptionMap, requestId);
