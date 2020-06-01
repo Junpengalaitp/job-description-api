@@ -13,7 +13,6 @@ public class MsgPublisher {
     private String jobExchange;
     @Value("${job.key}")
     private String jobKey;
-
     @Autowired
     private AmqpTemplate amqpTemplate;
 
