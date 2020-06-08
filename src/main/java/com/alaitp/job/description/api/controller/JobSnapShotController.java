@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
 @Api("JobSnapShot")
 @Slf4j
 @RestController
@@ -36,12 +34,4 @@ public class JobSnapShotController {
         log.info("Get job id: {} success", jobId);
         return ResponseEntity.ok().body(jobDesc);
     }
-
-//    @GetMapping(value = "/job-list/{jobTitle}/{requestId}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<?> jobList(@PathVariable String jobTitle, @PathVariable String requestId) {
-//        log.info("received path variable: {}, requestId: {}", jobTitle, requestId);
-//        Map<String, Map<String, String>> jobDescriptionMap = jobDescriptionService.findJobsByTitle(jobTitle, requestId);
-//        log.info("Get job list for job title: {} success, size: {}", jobTitle, jobDescriptionMap.size());
-//        return ResponseEntity.ok().body(jobDescriptionMap);
-//    }
 }

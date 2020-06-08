@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Configuration
 public class RabbitConfig {
     @Value("${job.queue}")
@@ -26,7 +29,9 @@ public class RabbitConfig {
 
     @Bean
     public Queue jobQueue() {
-        return new Queue(jobTopic);
+        Map<String, Object> args = new HashMap<>();
+        args.put("x-message-ttl", 10000);
+        return new Queue(jobTopic, true, false, false, args);
     }
 
     @Bean
