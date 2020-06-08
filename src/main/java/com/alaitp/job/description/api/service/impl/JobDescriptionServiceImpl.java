@@ -1,9 +1,9 @@
 package com.alaitp.job.description.api.service.impl;
 
 import com.alaitp.job.description.api.entity.JobDescription;
+import com.alaitp.job.description.api.mapper.DiceJobDAO;
 import com.alaitp.job.description.api.service.CachingService;
 import com.alaitp.job.description.api.service.JobDescriptionService;
-import com.alaitp.job.description.api.mapper.DiceJobDAO;
 import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
         List<JobDescription> jobDescriptionList = JobDescriptionsInDB(jobTitle);
         Map<String, Map<String, String>> jobDescriptionMap = new HashMap<>();
         for (JobDescription jobDescription: jobDescriptionList) {
-            jobDescriptionMap.put(jobDescription.getJobId(), jobDescription.toNoIdMap());
+            jobDescriptionMap.put(jobDescription.getJobId(), jobDescription.toNoIdMap(requestId));
         }
         cachingService.cacheJobsByRequestId(jobDescriptionMap, requestId);
         return jobDescriptionMap;

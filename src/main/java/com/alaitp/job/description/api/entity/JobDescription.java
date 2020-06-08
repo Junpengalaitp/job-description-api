@@ -18,11 +18,12 @@ public class JobDescription {
 
     private String jobDescriptionText;
 
-    public Map<String, String> toNoIdMap() {
+    public Map<String, String> toNoIdMap(String requestId) {
         Map<String, String> jobDescMap = new HashMap<>();
+        jobDescMap.put("requestId", requestId);
         jobDescMap.put("jobTitle", jobTitle);
         jobDescMap.put("company", company);
-        jobDescMap.put("tags", tags);
+        jobDescMap.put("tags", String.join(",", tags));
         jobDescMap.put("jobDescriptionText", jobDescriptionText);
         return jobDescMap;
     }
