@@ -2,8 +2,8 @@ package com.alaitp.job.description.api.entity;
 
 import lombok.Data;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Data
 public class JobDescription {
@@ -19,7 +19,7 @@ public class JobDescription {
     private String jobDescriptionText;
 
     public Map<String, String> toNoIdMap(String requestId) {
-        Map<String, String> jobDescMap = new HashMap<>();
+        Map<String, String> jobDescMap = new ConcurrentHashMap<>(); // avoid concurrent exception in controller
         jobDescMap.put("requestId", requestId);
         jobDescMap.put("jobTitle", jobTitle);
         jobDescMap.put("company", company);
