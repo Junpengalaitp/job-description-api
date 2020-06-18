@@ -1,6 +1,7 @@
 package com.alaitp.job.description.api.controller;
 
 import com.alaitp.job.description.api.Thread.JobTransitionThread;
+import com.alaitp.job.description.api.entity.JobDescription;
 import com.alaitp.job.description.api.service.JobDescriptionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class JobSnapShotController {
     @GetMapping(value = "/job-list/{jobTitle}/{requestId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getRemotiveJobs(@PathVariable String jobTitle, @PathVariable String requestId) {
         log.info("received path variable: {}, requestId: {}", jobTitle, requestId);
-        Map<String, Map<String, String>> jobDescriptionMap = jobDescriptionService.findJobsByTitle(jobTitle, requestId);
+        Map<String, JobDescription> jobDescriptionMap = jobDescriptionService.findJobsByTitle(jobTitle, requestId);
         log.info("Get job list for job title: {} success, size: {}", jobTitle, jobDescriptionMap.size());
         JobTransitionThread thread = new JobTransitionThread(jobDescriptionMap);
         thread.start();

@@ -26,14 +26,14 @@ class JobDescriptionServiceTest extends BaseJunitTest {
 
     @Test
     void findJobsByTitle() {
-        Map<String, Map<String, String>> jobDescriptions = jobDescriptionService.findJobsByTitle("software engineer", "testRequestId");
+        Map<String, JobDescription> jobDescriptions = jobDescriptionService.findJobsByTitle("software engineer", "testRequestId");
         System.out.println(jobDescriptions);
         assertTrue(jobDescriptions.size() > 1);
     }
 
     @Test
     void jobDescriptionsInDB() {
-        List<JobDescription> jobDescriptionList = jobDescriptionService.JobDescriptionsInDB("devops");
+        List<JobDescription> jobDescriptionList = jobDescriptionService.jobDescriptionsInDB("devops");
         assertEquals(6, jobDescriptionList.size());
     }
 }

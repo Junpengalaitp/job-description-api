@@ -9,8 +9,8 @@ public interface JobDescriptionService {
 
     JobDescription findOneById(String jobId);
 
-    Map<String, Map<String, String>> findJobsByTitle(String jobTitle, String requestId);
+    Map<String, JobDescription> findJobsByTitle(String jobTitle, String requestId);
 
-    List<JobDescription> JobDescriptionsInDB(String jobTitle);
+    List<JobDescription> jobDescriptionsInDB(String jobTitle);
 
 }
