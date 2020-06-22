@@ -14,9 +14,6 @@ import java.util.List;
 @Mapper
 @Repository
 public interface DiceJobDAO extends MyBatisBaseDao<DiceJob, String> {
-    DiceJob selectByJobId(String jobId);
-
-    JobDescription selectDiceByJobId(String jobId);
 
     List<JobDescription> findJobDescriptionsByJobTitle(@NonNull String jobTitle);
 

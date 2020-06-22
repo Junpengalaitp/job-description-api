@@ -1,8 +1,8 @@
 package com.alaitp.job.description.api.controller;
 
-import com.alaitp.job.description.api.Thread.JobTransitionThread;
 import com.alaitp.job.description.api.entity.JobDescription;
 import com.alaitp.job.description.api.service.JobDescriptionService;
+import com.alaitp.job.description.api.thread.JobTransitionThread;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

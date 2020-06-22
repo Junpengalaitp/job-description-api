@@ -20,11 +20,6 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
     private DiceJobDAO diceJobDAO;
 
     @Override
-    public JobDescription findOneById(@NonNull String jobId) {
-        return diceJobDAO.selectDiceByJobId(jobId);
-    }
-
-    @Override
     public Map<String, JobDescription> findJobsByTitle(@NonNull String jobTitle, String requestId) {
         List<JobDescription> jobDescriptionList = jobDescriptionsInDB(jobTitle);
         Map<String, JobDescription> jobDescriptionMap = new HashMap<>();

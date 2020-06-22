@@ -40,12 +40,6 @@
   <sql id="Column_List">
     job_id, title, company, tags, job_desc
   </sql>
-  <select id="selectByJobId" parameterType="java.lang.String" resultMap="jobResultMap">
-    select
-    <include refid="Column_List" />
-    from dice_job
-    where job_id = #{jobId,jdbcType=VARCHAR}
-  </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT
@@ -53,19 +47,13 @@
     FROM dice_job
     WHERE job_id = #{jobId,jdbcType=VARCHAR}
   </select>
-  <select id="selectDiceByJobId" parameterType="java.lang.String" resultMap="diceResultMap">
-    SELECT
-    <include refid="Base_Column_List" />
-    FROM "dice_job"
-    WHERE job_id = #{jobId,jdbcType=VARCHAR}
-    LIMIT 200
-  </select>
+
   <select id="findJobDescriptionsByJobTitle" parameterType="java.lang.String" resultMap="diceResultMap">
     SELECT
     <include refid="Base_Column_List" />
     FROM dice_job
     WHERE title ILIKE CONCAT(CONCAT('% ', #{jobTitle, jdbcType=VARCHAR}), ' %')
-    LIMIT 200
+    LIMIT 1000
   </select>
   <select id="notCachedJobDescriptionsByJobTitle"
           resultType="com.alaitp.job.description.api.entity.JobDescription">
