@@ -12,8 +12,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.alaitp.job.description.api.config.Constants.JOBS;
-import static com.alaitp.job.description.api.config.Constants.REMOTIVE_URL;
+import static com.alaitp.job.description.api.config.Constant.JOBS;
+import static com.alaitp.job.description.api.config.Constant.REMOTIVE_URL;
 
 @Service
 public class RequestServiceImpl implements RequestService {
