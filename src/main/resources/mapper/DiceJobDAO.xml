@@ -53,6 +53,7 @@
     <include refid="Base_Column_List" />
     FROM dice_job
     WHERE title ILIKE CONCAT(CONCAT('% ', #{jobTitle, jdbcType=VARCHAR}), ' %')
+    LIMIT 1000
   </select>
   <select id="notCachedJobDescriptionsByJobTitle"
           resultType="com.alaitp.job.description.api.entity.JobDescription">
