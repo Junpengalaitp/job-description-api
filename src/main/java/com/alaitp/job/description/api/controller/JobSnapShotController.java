@@ -3,6 +3,7 @@ package com.alaitp.job.description.api.controller;
 import com.alaitp.job.description.api.entity.JobDescription;
 import com.alaitp.job.description.api.service.JobDescriptionService;
 import com.alaitp.job.description.api.thread.JobTransitionThread;
+import com.alaitp.job.description.api.thread.JobTransitionThreadPool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,8 +30,7 @@ public class JobSnapShotController {
         log.info("received path variable: {}, requestId: {}", jobTitle, requestId);
         Map<String, JobDescription> jobDescriptionMap = jobDescriptionService.findJobsByTitle(jobTitle, requestId);
         log.info("Get job list for job title: {} success, size: {}", jobTitle, jobDescriptionMap.size());
-        JobTransitionThread thread = new JobTransitionThread(jobDescriptionMap);
-        thread.start();
+        JobTransitionThreadPool.submit(new JobTransitionThread(jobDescriptionMap));
         return ResponseEntity.ok().body(jobDescriptionMap);
     }
 }

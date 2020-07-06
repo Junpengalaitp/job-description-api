@@ -19,7 +19,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.alaitp.jobdescriptionapi.com.alaitp.wordstandardization.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.alaitp.job.description.api"))
                 .paths(PathSelectors.any())
                 .build();
     }
