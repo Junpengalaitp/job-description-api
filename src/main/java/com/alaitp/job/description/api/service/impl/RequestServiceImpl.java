@@ -15,6 +15,9 @@ import java.util.Map;
 import static com.alaitp.job.description.api.config.Constant.JOBS;
 import static com.alaitp.job.description.api.config.Constant.REMOTIVE_URL;
 
+/**
+ * Request jobs from remotive.io
+ */
 @Service
 public class RequestServiceImpl implements RequestService {
     @Override

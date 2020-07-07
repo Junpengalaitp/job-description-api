@@ -6,23 +6,23 @@ import com.alaitp.job.description.api.message.MsgPublisher;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+/**
+ * Send jobs for an request by MQ, with additional info
+ */
 public class JobTransitionThread extends Thread {
 
     private final MsgPublisher msgPublisher = ApplicationContextProvider.getBean(MsgPublisher.class);
 
-    private final Map<String, JobDescription> jobMap;
+    private final List<JobDescription> jobDescriptionList;
 
-    public JobTransitionThread(Map<String, JobDescription> jobMap) {
-        this.jobMap = jobMap;
+    public JobTransitionThread(List<JobDescription> jobDescriptionList) {
+        this.jobDescriptionList = jobDescriptionList;
     }
 
     @Override
     public void run() {
-        List<JobDescription> jobDescriptionList = new ArrayList<>(jobMap.values());
         int totalJobs = jobDescriptionList.size();
         for (int i = 0; i < totalJobs; i++) {
             JSONObject jobDescriptionJson = JSONObject.parseObject(JSON.toJSONString(jobDescriptionList.get(i)));
