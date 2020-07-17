@@ -17,10 +17,11 @@ public class JobDescriptionApiApplication {
     }
 
     private static void initLogging() {
-        String javaVersion = System.getProperty("java.version", "not specified");
-        String osName = System.getProperty("os.name", "not specified");
-        String userHome = System.getProperty("user.home", "not specified");
-        String javaHome = System.getProperty("java.home", "not specified");
+        String defaultVal = "not specified";
+        String javaVersion = System.getProperty("java.version", defaultVal);
+        String osName = System.getProperty("os.name", defaultVal);
+        String userHome = System.getProperty("user.home", defaultVal);
+        String javaHome = System.getProperty("java.home", defaultVal);
         log.info("** Your OS name is : " + osName);
         log.info("** The version of the JVM you are running is : " + javaVersion);
         log.info("** Your user home directory is : " + userHome);

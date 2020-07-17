@@ -8,6 +8,11 @@ import java.util.List;
 import java.util.concurrent.*;
 
 public class JobTransitionThreadPool {
+
+    private JobTransitionThreadPool() {
+        // private constructor to avoid sonar lint warning
+    }
+
     /**
      * manually create a fixed thread pool, corePoolSize == maximumPoolSize, keepAliveTime = 0
      */

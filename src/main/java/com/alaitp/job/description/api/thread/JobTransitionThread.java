@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Send jobs for an request by MQ, with additional info
  */
-public class JobTransitionThread extends Thread {
+public class JobTransitionThread implements Runnable {
 
     private final MsgPublisher msgPublisher = ApplicationContextProvider.getBean(MsgPublisher.class);
 
@@ -25,7 +25,7 @@ public class JobTransitionThread extends Thread {
     public void run() {
         int totalJobs = jobDescriptionList.size();
         for (int i = 0; i < totalJobs; i++) {
-            JSONObject jobDescriptionJson = JSONObject.parseObject(JSON.toJSONString(jobDescriptionList.get(i)));
+            JSONObject jobDescriptionJson = JSON.parseObject(JSON.toJSONString(jobDescriptionList.get(i)));
             jobDescriptionJson.put("jobNumber", i + 1);
             jobDescriptionJson.put("totalJobCount", totalJobs);
             jobDescriptionJson.put("requestEnd", i + 1 == totalJobs);

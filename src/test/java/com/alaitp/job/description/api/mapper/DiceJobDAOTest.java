@@ -2,13 +2,12 @@ package com.alaitp.job.description.api.mapper;
 
 import com.alaitp.job.description.api.BaseJunitTest;
 import com.alaitp.job.description.api.entity.JobDescription;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DiceJobDAOTest extends BaseJunitTest {
@@ -25,13 +24,13 @@ class DiceJobDAOTest extends BaseJunitTest {
     }
 
     @Test
-    void notCachedJobDescriptionsByJobTitle() {
-        String title = "devops";
-        List<String> cachedIds = new ArrayList<>();
-        cachedIds.add("34b00a2fece7b3549be964a13b9d5911afa0a1e103707f417c2a1681140591f4");
-        cachedIds.add("5a38f0fe6b4a4dfc7e33790456028f2de41276d155e74cd99a626dc3e84b0f03");
-        List<JobDescription> jobDescriptionList = diceJobDAO.notCachedJobDescriptionsByJobTitle(title, cachedIds);
+    void findJobDescriptionsList() {
+        String title = "software developer";
+        QueryWrapper<JobDescription> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("job_id", "title", "company", "tags", "job_desc").lambda().like(JobDescription::getJobTitle, title);
+        List<JobDescription> jobDescriptionList = diceJobDAO.selectList(queryWrapper);
         System.out.println(jobDescriptionList);
-        assertEquals(4, jobDescriptionList.size());
+        System.out.println(jobDescriptionList.size());
+        assertTrue(jobDescriptionList.size() > 1);
     }
 }
