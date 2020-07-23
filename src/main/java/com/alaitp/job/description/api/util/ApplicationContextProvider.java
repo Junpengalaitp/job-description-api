@@ -1,4 +1,4 @@
-package com.alaitp.job.description.api;
+package com.alaitp.job.description.api.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

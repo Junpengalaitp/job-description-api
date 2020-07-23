@@ -1,8 +1,8 @@
 package com.alaitp.job.description.api.thread;
 
-import com.alaitp.job.description.api.ApplicationContextProvider;
 import com.alaitp.job.description.api.entity.JobDescription;
 import com.alaitp.job.description.api.message.MsgPublisher;
+import com.alaitp.job.description.api.util.ApplicationContextProvider;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
