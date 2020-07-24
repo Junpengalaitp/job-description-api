@@ -20,5 +20,4 @@ class JobDescriptionServiceTest extends BaseJunitTest {
         System.out.println(jobDescriptions);
         assertTrue(jobDescriptions.size() > 1);
     }
-
 }

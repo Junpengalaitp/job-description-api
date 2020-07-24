@@ -17,12 +17,12 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-public class JobSnapShotController {
+public class JobController {
 
     private final JobDescriptionService jobDescriptionService;
 
     @Autowired
-    public JobSnapShotController(JobDescriptionService jobDescriptionService) {
+    public JobController(JobDescriptionService jobDescriptionService) {
         this.jobDescriptionService = jobDescriptionService;
     }
 
