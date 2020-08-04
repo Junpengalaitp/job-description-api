@@ -10,7 +10,6 @@ import java.util.concurrent.*;
 public class JobTransitionThreadPool {
 
     private JobTransitionThreadPool() {
-        // private constructor
     }
 
     /**

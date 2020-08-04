@@ -1,5 +1,6 @@
 package com.alaitp.job.description.api.thread;
 
+import com.alaitp.job.description.api.controller.JobController;
 import com.alaitp.job.description.api.entity.JobDescription;
 import com.alaitp.job.description.api.message.MsgPublisher;
 import com.alaitp.job.description.api.util.ApplicationContextProvider;
@@ -10,6 +11,8 @@ import java.util.List;
 
 /**
  * Send jobs for an request by MQ, with additional info
+ *
+ * @see JobController
  */
 public class JobTransitionThread implements Runnable {
 

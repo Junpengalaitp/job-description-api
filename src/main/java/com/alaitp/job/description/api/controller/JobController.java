@@ -2,6 +2,7 @@ package com.alaitp.job.description.api.controller;
 
 import com.alaitp.job.description.api.entity.JobDescription;
 import com.alaitp.job.description.api.service.JobDescriptionService;
+import com.alaitp.job.description.api.thread.JobTransitionThread;
 import com.alaitp.job.description.api.thread.JobTransitionThreadPool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class JobController {
      *
      * @return job search result map, key: job id, value: JobDescription
      * Also starts a thread for sending jobs to job-keyword app by mq for analysing job keywords.
+     * @see JobTransitionThread
      */
     @GetMapping(value = "/job-list/{jobTitle}/{requestId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getRemotiveJobs(@PathVariable String jobTitle, @PathVariable String requestId) {

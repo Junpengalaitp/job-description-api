@@ -27,4 +27,5 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
         jobDescriptionList.forEach((JobDescription jobDescription) -> jobDescription.setRequestId(requestId));
         return jobDescriptionList;
     }
+
 }
