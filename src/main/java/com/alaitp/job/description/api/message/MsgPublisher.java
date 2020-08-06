@@ -18,6 +18,6 @@ public class MsgPublisher {
 
     public void sendMsg(String msg) {
         amqpTemplate.convertAndSend(jobExchange, jobKey, msg);
-        log.info("sent message: {}", msg);
+        log.debug("sent message: {}", msg);
     }
 }
