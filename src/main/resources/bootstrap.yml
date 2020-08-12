@@ -3,3 +3,4 @@ spring:
     config:
       name: job-description-api
       uri: http://localhost:8810
+      profile: dev
