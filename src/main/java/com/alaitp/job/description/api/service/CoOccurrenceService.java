@@ -1,10 +1,24 @@
 package com.alaitp.job.description.api.service;
 
+import com.alaitp.job.description.api.entity.CoOccurrenceIdxToWord;
 import com.alaitp.job.description.api.entity.CoOccurrenceWordCount;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CoOccurrenceService {
+
+    CoOccurrenceIdxToWord getCoOccurrenceIdxToWord(int idx);
+
+    /**
+     * get top n for correlated words for word by the categories
+     *
+     * @param word       the root word for correlated words
+     * @param topN       top n
+     * @param categories correlated words category
+     * @return map of top n keyword (key: keyword, value: json of count and category))
+     */
+    Map<String, Map<String, Object>> getTopRelatedWords(String word, int topN, List<String> categories);
 
     /**
      * CoOccurrenceWordCount for target word
@@ -21,6 +35,6 @@ public interface CoOccurrenceService {
      * @param topN                  top n
      * @return top n word indices
      */
-    List<Integer> getTopIndices(CoOccurrenceWordCount coOccurrenceWordCount, int topN);
+    List<Integer> getTopIndicesInCategory(CoOccurrenceWordCount coOccurrenceWordCount, int topN, List<String> categories);
 
 }
