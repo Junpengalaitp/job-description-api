@@ -87,16 +87,16 @@ public class CoOccurrenceServiceImpl implements CoOccurrenceService {
     public Map<String, Map<String, Object>> getTopRelatedWords(String word, int topN, Set<String> categories) {
         Map<String, Map<String, Object>> topWordMap = new HashMap<>();
         CoOccurrenceWordCount coOccurrenceWordCount = getCoOccurrenceCountByWord(word);
-        String[] sortedIndices = coOccurrenceWordCount.getSortedIndices().split(",");
-        for (String sortedIndex : sortedIndices) {
-            int index = Integer.parseInt(sortedIndex);
+        if (coOccurrenceWordCount == null) {
+            return topWordMap;
+        }
+        for (int index : coOccurrenceWordCount.getSortedIndexArray()) {
             CoOccurrenceIdxToWord coOccurrenceIdxToWord = WordToCategoryCache.getWord(index);
             // check co-occurred word is in desired categories and it's not the word itself
             if (categories.contains(coOccurrenceIdxToWord.getCategory()) && !word.equals(coOccurrenceIdxToWord.getWord())) {
                 topWordMap.put(coOccurrenceIdxToWord.getWord(), Map.of(
                         CATEGORY, coOccurrenceIdxToWord.getCategory(),
-                        COUNT, coOccurrenceWordCount.getWordCount(index))
-                );
+                        COUNT, coOccurrenceWordCount.getWordCount(index)));
                 if (topWordMap.size() == topN) {
                     break;
                 }
@@ -108,9 +108,10 @@ public class CoOccurrenceServiceImpl implements CoOccurrenceService {
     @Override
     public CoOccurrenceWordCount getCoOccurrenceCountByWord(String word) {
         QueryWrapper<CoOccurrenceWordCount> queryWrapper = new QueryWrapper<>();
-        return coOccurrenceSortedWordToIdxDao.selectOne(queryWrapper
+        CoOccurrenceWordCount coOccurrenceWordCount = coOccurrenceSortedWordToIdxDao.selectOne(queryWrapper
                 .lambda()
                 .eq(CoOccurrenceWordCount::getWord, word));
+        return coOccurrenceWordCount.init();
     }
 
 }

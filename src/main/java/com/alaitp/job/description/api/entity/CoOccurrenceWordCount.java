@@ -27,17 +27,18 @@ public class CoOccurrenceWordCount implements Serializable {
     private String sortedIndices;
 
     @TableField(exist = false)
-    private int[] sortedIndexArray = null;
+    private int[] wordCountArray;
+
+    @TableField(exist = false)
+    private int[] sortedIndexArray;
 
     public int getWordCount(int idx) {
-        return getWordCountList()[idx];
+        return wordCountArray[idx];
     }
 
-    private int[] getWordCountList() {
-        if (sortedIndexArray == null) {
-            sortedIndexArray = Stream.of(sortedIndices.split(",")).mapToInt(Integer::parseInt).toArray();
-        }
-        return sortedIndexArray;
+    public CoOccurrenceWordCount init() {
+        wordCountArray = Stream.of(wordCounts.split(",")).mapToInt(Integer::parseInt).toArray();
+        sortedIndexArray = Stream.of(sortedIndices.split(",")).mapToInt(Integer::parseInt).toArray();
+        return this;
     }
-
 }
