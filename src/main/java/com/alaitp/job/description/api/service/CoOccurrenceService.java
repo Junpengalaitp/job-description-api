@@ -5,8 +5,18 @@ import com.alaitp.job.description.api.entity.CoOccurrenceWordCount;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface CoOccurrenceService {
+
+    /**
+     * get standard word from cache if exists, else get it from database
+     *
+     * @param word target word, might not be in standard format
+     * @return standard word if standard word exists, else return word
+     */
+    String getStandardWord(String word);
+
 
     CoOccurrenceIdxToWord getCoOccurrenceIdxToWord(int idx);
 
@@ -18,7 +28,7 @@ public interface CoOccurrenceService {
      * @param categories correlated words category
      * @return map of top n keyword (key: keyword, value: json of count and category))
      */
-    Map<String, Map<String, Object>> getTopRelatedWords(String word, int topN, List<String> categories);
+    Map<String, Map<String, Object>> getTopRelatedWords(String word, int topN, Set<String> categories);
 
     /**
      * CoOccurrenceWordCount for target word

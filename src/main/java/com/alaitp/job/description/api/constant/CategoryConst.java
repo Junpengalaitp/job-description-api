@@ -1,11 +1,10 @@
-package com.alaitp.job.description.api.config;
+package com.alaitp.job.description.api.constant;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
-public interface Constant {
-    String REMOTIVE_URL = "http;s://remotive.io/api/remote-jobs?category=software-dev&search=";
-    String JOBS = "jobs";
-
+public interface CategoryConst {
     String PL = "PROGRAMMING_LANGUAGE";  // programming language,  e.g. Java, Python
     String OL = "OTHER_LANGUAGE";  // non-programming language, e.g. 'CSS', 'HTML'
     String LB = "LIBRARY";  // library, e.g. React, Bootstrap
@@ -32,7 +31,6 @@ public interface Constant {
     String OF = "OFFER";  // salary, benefits
     String TM = "TEAM";  // team description/culture
     String CP = "COMPANY";  // company type e.g. startup, FinTech
-
     Map<String, String> CATEGORY_MAP = Map.ofEntries(
             Map.entry("pl", PL),
             Map.entry("ol", OL),
@@ -61,4 +59,5 @@ public interface Constant {
             Map.entry("tm", TM),
             Map.entry("cp", CP)
     );
+    Set<String> ALL_CATEGORY = new HashSet<>(CATEGORY_MAP.values());
 }

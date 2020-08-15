@@ -6,6 +6,7 @@ import com.alaitp.job.description.api.message.MsgPublisher;
 import com.alaitp.job.description.api.util.ApplicationContextProvider;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  *
  * @see JobController
  */
+@Slf4j
 public class JobTransitionThread implements Runnable {
 
     private final MsgPublisher msgPublisher = ApplicationContextProvider.getBean(MsgPublisher.class);
@@ -34,5 +36,6 @@ public class JobTransitionThread implements Runnable {
             jobDescriptionJson.put("requestEnd", i + 1 == totalJobs);
             msgPublisher.sendMsg(jobDescriptionJson.toJSONString());
         }
+        log.info("{} totalJobs sent to mq", totalJobs);
     }
 }

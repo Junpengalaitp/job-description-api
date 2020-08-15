@@ -23,4 +23,12 @@ class CoOccurrenceServiceImplTest extends BaseJunitTest {
         System.out.println(topIndices);
         assertEquals(11, topIndices.size());
     }
+
+    @Test
+    void getStandardWord() {
+        String word = "python";
+        String standardWord = coOccurrenceService.getStandardWord(word);
+        System.out.println(standardWord);
+        assertEquals("Python", standardWord);
+    }
 }

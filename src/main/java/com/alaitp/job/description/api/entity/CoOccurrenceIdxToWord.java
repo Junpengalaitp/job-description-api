@@ -1,5 +1,6 @@
 package com.alaitp.job.description.api.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ public class CoOccurrenceIdxToWord implements Serializable {
 
     private static final long serialVersionUID = -567200261530217948L;
 
+    @TableId
     private Integer idx;
 
     private String word;

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alaitp.job.description.api.mapper.StandardWordDao">
+    <resultMap id="BaseResultMap" type="com.alaitp.job.description.api.entity.StandardWord">
+        <id column="standard_word" jdbcType="VARCHAR" property="standardWord"/>
+        <result column="other_words" jdbcType="VARCHAR" property="otherWords"/>
+        <result column="category" jdbcType="VARCHAR" property="category"/>
+        <result column="modification_time" jdbcType="TIMESTAMP" property="modificationTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        standard_word, other_words, category, modification_time
+    </sql>
+    <select id="selectStandardWord" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT standard_word.standard_word
+        FROM "standard_word"
+        WHERE other_words ILIKE CONCAT(CONCAT('%%,', #{word, jdbcType=VARCHAR}), ',%%')
+    </select>
+</mapper>

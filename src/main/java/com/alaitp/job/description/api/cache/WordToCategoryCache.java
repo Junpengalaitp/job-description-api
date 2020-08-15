@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * init on app start, keep word to category map, for fast finding word category
@@ -17,20 +16,18 @@ import java.util.stream.Collectors;
 @Component
 public class WordToCategoryCache {
 
-    private static final Map<String, String> WORD_CATEGORY_MAP = new HashMap<>();
+    private static final List<CoOccurrenceIdxToWord> WORD_CATEGORY_LIST = new ArrayList<>();
+
     @Autowired
     private CoOccurrenceIdxToWordDao coOccurrenceIdxToWordDao;
 
-    @PostConstruct
-    private void init() {
-        WORD_CATEGORY_MAP.putAll(coOccurrenceIdxToWordDao.selectList(new QueryWrapper<>())
-                .stream()
-                .collect(Collectors.toMap(CoOccurrenceIdxToWord::getWord, CoOccurrenceIdxToWord::getCategory)));
-        System.out.println(WORD_CATEGORY_MAP);
+    public static CoOccurrenceIdxToWord getWord(int idx) {
+        return WORD_CATEGORY_LIST.get(idx);
     }
 
-    public String getWordCategory(String word) {
-        return WORD_CATEGORY_MAP.get(word);
+    @PostConstruct
+    private void init() {
+        WORD_CATEGORY_LIST.addAll(coOccurrenceIdxToWordDao.selectList(new QueryWrapper<>()));
     }
 
 }

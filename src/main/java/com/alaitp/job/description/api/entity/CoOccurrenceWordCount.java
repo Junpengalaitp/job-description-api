@@ -1,10 +1,11 @@
 package com.alaitp.job.description.api.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * co_occurrence_sorted_word_to_idx
@@ -15,6 +16,7 @@ import java.util.List;
 public class CoOccurrenceWordCount implements Serializable {
     private static final long serialVersionUID = -1886926942065230286L;
 
+    @TableId
     private String word;
 
     private String wordCounts;
@@ -24,14 +26,18 @@ public class CoOccurrenceWordCount implements Serializable {
      */
     private String sortedIndices;
 
-    public List<Integer> getWordCountList() {
-        List<Integer> wordCountList = new ArrayList<>();
-        for (char c : wordCounts.toCharArray()) {
-            if (',' != c) {
-                wordCountList.add(Integer.parseInt(String.valueOf(c)));
-            }
+    @TableField(exist = false)
+    private int[] sortedIndexArray = null;
+
+    public int getWordCount(int idx) {
+        return getWordCountList()[idx];
+    }
+
+    private int[] getWordCountList() {
+        if (sortedIndexArray == null) {
+            sortedIndexArray = Stream.of(sortedIndices.split(",")).mapToInt(Integer::parseInt).toArray();
         }
-        return wordCountList;
+        return sortedIndexArray;
     }
 
 }

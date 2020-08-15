@@ -1,7 +1,7 @@
 package com.alaitp.job.description.api.service.impl;
 
 import com.alaitp.job.description.api.entity.JobDescription;
-import com.alaitp.job.description.api.mapper.DiceJobDAO;
+import com.alaitp.job.description.api.mapper.DiceJobDao;
 import com.alaitp.job.description.api.service.JobDescriptionService;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import java.util.List;
 public class JobDescriptionServiceImpl implements JobDescriptionService {
 
     @Autowired
-    private DiceJobDAO diceJobDAO;
+    private DiceJobDao diceJobDAO;
 
     /**
      * find job descriptions in sql database by job title, and set request id for each job

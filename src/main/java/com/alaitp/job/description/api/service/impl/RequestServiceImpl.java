@@ -12,8 +12,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.alaitp.job.description.api.config.Constant.JOBS;
-import static com.alaitp.job.description.api.config.Constant.REMOTIVE_URL;
+import static com.alaitp.job.description.api.constant.ControllerConst.JOBS;
+import static com.alaitp.job.description.api.constant.ControllerConst.REMOTIVE_URL;
 
 /**
  * Request jobs from remotive.io

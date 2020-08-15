@@ -7,11 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * DiceJobsDAO继承基类
- */
 @Repository
-public interface DiceJobDAO extends BaseMapper<JobDescription> {
-
+public interface DiceJobDao extends BaseMapper<JobDescription> {
     List<JobDescription> findJobDescriptionsByJobTitle(@NonNull String jobTitle);
 }

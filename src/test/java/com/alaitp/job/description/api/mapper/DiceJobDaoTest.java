@@ -9,10 +9,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class DiceJobDAOTest extends BaseJunitTest {
+class DiceJobDaoTest extends BaseJunitTest {
 
     @Autowired
-    private DiceJobDAO diceJobDAO;
+    private DiceJobDao diceJobDAO;
 
     @Test
     void findJobDescriptionsByJobTitle() {
