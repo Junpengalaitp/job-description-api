@@ -1,7 +1,7 @@
 package com.alaitp.job.description.api.service;
 
 import com.alaitp.job.description.api.BaseJunitTest;
-import com.alaitp.job.description.api.dto.RemotiveJob;
+import com.alaitp.job.description.api.dto.RemotiveJobDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +17,7 @@ class RequestServiceTest extends BaseJunitTest {
 
     @Test
     void requestRemotive() {
-        Map<String, RemotiveJob> map = requestService.searchRemotiveJobs("Java", "test" + UUID.randomUUID());
+        Map<String, RemotiveJobDto> map = requestService.searchRemotiveJobs("Java", "test" + UUID.randomUUID());
         System.out.println(map);
         assertTrue(map.size() > 0);
     }

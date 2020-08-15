@@ -1,4 +1,4 @@
-package com.alaitp.job.description.api.mapper;
+package com.alaitp.job.description.api.dao;
 
 import com.alaitp.job.description.api.entity.JobDescription;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

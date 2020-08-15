@@ -1,7 +1,7 @@
 package com.alaitp.job.description.api.service.impl;
 
+import com.alaitp.job.description.api.dao.DiceJobDao;
 import com.alaitp.job.description.api.entity.JobDescription;
-import com.alaitp.job.description.api.mapper.DiceJobDao;
 import com.alaitp.job.description.api.service.JobDescriptionService;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;

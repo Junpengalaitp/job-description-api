@@ -9,7 +9,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @Slf4j
 @SpringBootApplication
 @EnableEurekaClient
-@MapperScan("com.alaitp.job.description.api.mapper")
+@MapperScan("com.alaitp.job.description.api.dao")
 public class JobDescriptionApiApplication {
     public static void main(String[] args) {
         initLogging();

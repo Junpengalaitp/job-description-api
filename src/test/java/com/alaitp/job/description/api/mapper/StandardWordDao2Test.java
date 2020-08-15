@@ -1,12 +1,13 @@
 package com.alaitp.job.description.api.mapper;
 
 import com.alaitp.job.description.api.BaseJunitTest;
+import com.alaitp.job.description.api.dao.StandardWordDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class StandardWordDaoTest extends BaseJunitTest {
+class StandardWordDao2Test extends BaseJunitTest {
 
     @Autowired
     private StandardWordDao standardWordDao;

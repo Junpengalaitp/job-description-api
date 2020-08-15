@@ -1,6 +1,7 @@
 package com.alaitp.job.description.api.mapper;
 
 import com.alaitp.job.description.api.BaseJunitTest;
+import com.alaitp.job.description.api.dao.DiceJobDao;
 import com.alaitp.job.description.api.entity.JobDescription;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

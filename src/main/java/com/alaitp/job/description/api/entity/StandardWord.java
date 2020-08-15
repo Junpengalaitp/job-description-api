@@ -12,6 +12,7 @@ import java.util.Date;
  */
 @Data
 public class StandardWord implements Serializable {
+
     private static final long serialVersionUID = -3611766728413639649L;
 
     private String standardWord;

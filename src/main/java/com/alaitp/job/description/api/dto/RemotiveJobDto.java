@@ -8,7 +8,7 @@ import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class RemotiveJob extends BaseJobDto {
+public class RemotiveJobDto extends BaseJobDto {
     private List<String> tags;
     private String jobType;
     private String publicationDate;

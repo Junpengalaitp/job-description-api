@@ -1,9 +1,7 @@
 package com.alaitp.job.description.api.service;
 
-import com.alaitp.job.description.api.entity.CoOccurrenceIdxToWord;
-import com.alaitp.job.description.api.entity.CoOccurrenceWordCount;
+import com.alaitp.job.description.api.entity.CoOccurrenceMatrixRow;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,9 +15,6 @@ public interface CoOccurrenceService {
      */
     String getStandardWord(String word);
 
-
-    CoOccurrenceIdxToWord getCoOccurrenceIdxToWord(int idx);
-
     /**
      * get top n for correlated words for word by the categories
      *
@@ -30,21 +25,6 @@ public interface CoOccurrenceService {
      */
     Map<String, Map<String, Object>> getTopRelatedWords(String word, int topN, Set<String> categories);
 
-    /**
-     * CoOccurrenceWordCount for target word
-     *
-     * @param word target word
-     * @return CoOccurrenceWordCount for target word
-     */
-    CoOccurrenceWordCount getCoOccurrenceCountByWord(String word);
 
-    /**
-     * get top n co-occurred word indices with the target word
-     *
-     * @param coOccurrenceWordCount coOccurrenceWordCount for target word
-     * @param topN                  top n
-     * @return top n word indices
-     */
-    List<Integer> getTopIndicesInCategory(CoOccurrenceWordCount coOccurrenceWordCount, int topN, List<String> categories);
-
+    CoOccurrenceMatrixRow getCoOccurrenceRowByWord(String word);
 }
