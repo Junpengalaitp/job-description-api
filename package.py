@@ -2,7 +2,7 @@ if __name__ == '__main__':
     import os
     import socket
 
-    image_name = "job-decs"
+    image_name = "job-desc"
     docker_tag = f"{socket.gethostbyname('alaitp-cloud')}:5555/{image_name}"
     os.system("mvn clean")
     os.system("mvn package -Dmaven.test.skip=true")
