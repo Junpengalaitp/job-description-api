@@ -8,5 +8,5 @@ public interface JobDescriptionService {
     /**
      * find job descriptions in sql database by job title, and set request id for each job
      */
-    List<JobDescription> findJobsByTitle(String jobTitle, String requestId);
+    List<JobDescription> findJobsByTitle(String jobTitle, int amount, String requestId);
 }

@@ -16,7 +16,7 @@ class JobDescriptionServiceTest extends BaseJunitTest {
 
     @Test
     void findJobsByTitle() {
-        List<JobDescription> jobDescriptions = jobDescriptionService.findJobsByTitle("software engineer", "testRequestId");
+        List<JobDescription> jobDescriptions = jobDescriptionService.findJobsByTitle("software engineer", 100, "testRequestId");
         System.out.println(jobDescriptions);
         assertTrue(jobDescriptions.size() > 1);
     }

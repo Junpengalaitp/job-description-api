@@ -1,6 +1,7 @@
 package com.alaitp.job.description.api.service.impl;
 
 import com.alaitp.job.description.api.BaseJunitTest;
+import com.alaitp.job.description.api.entity.CoOccurrenceMatrixRow;
 import com.alaitp.job.description.api.service.CoOccurrenceService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,12 @@ class CoOccurrenceServiceImplTest extends BaseJunitTest {
         String standardWord = coOccurrenceService.getStandardWord(word);
         System.out.println(standardWord);
         assertEquals("Python", standardWord);
+    }
+
+    @Test
+    void getCoOccurrenceRowByWord() {
+        String word = "Hadoop";
+        CoOccurrenceMatrixRow res = coOccurrenceService.getCoOccurrenceRowByWord(word);
+        System.out.println(res);
     }
 }

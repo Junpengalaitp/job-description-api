@@ -41,11 +41,12 @@
     job_id, title, company, tags, job_desc
   </sql>
 
-  <select id="findJobDescriptionsByJobTitle" parameterType="java.lang.String" resultMap="diceResultMap">
+  <select id="findJobDescriptionsByJobTitle" resultMap="diceResultMap">
     SELECT
     <include refid="Column_List"/>
     FROM dice_job
     WHERE title ILIKE CONCAT(CONCAT('% ', #{jobTitle, jdbcType=VARCHAR}), ' %')
-    LIMIT 1000
+    ORDER BY job_id
+    LIMIT #{amount, jdbcType=INTEGER}
   </select>
 </mapper>

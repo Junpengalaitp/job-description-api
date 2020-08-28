@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface DiceJobDao extends BaseMapper<JobDescription> {
-    List<JobDescription> findJobDescriptionsByJobTitle(@NonNull String jobTitle);
+    List<JobDescription> findJobDescriptionsByJobTitle(@NonNull String jobTitle, @NonNull int amount);
 }

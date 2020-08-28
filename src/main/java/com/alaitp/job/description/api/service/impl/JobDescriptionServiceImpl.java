@@ -21,8 +21,8 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
      * find job descriptions in sql database by job title, and set request id for each job
      */
     @Override
-    public List<JobDescription> findJobsByTitle(@NonNull String jobTitle, String requestId) {
-        List<JobDescription> jobDescriptionList = diceJobDAO.findJobDescriptionsByJobTitle(jobTitle);
+    public List<JobDescription> findJobsByTitle(@NonNull String jobTitle, int amount, String requestId) {
+        List<JobDescription> jobDescriptionList = diceJobDAO.findJobDescriptionsByJobTitle(jobTitle, amount);
         log.info("selected {} jobs with title: {} from SQL", jobDescriptionList.size(), jobTitle);
         jobDescriptionList.forEach((JobDescription jobDescription) -> jobDescription.setRequestId(requestId));
         return jobDescriptionList;

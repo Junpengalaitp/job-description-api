@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static com.alaitp.job.description.api.constant.ControllerConst.FIRST_PAGE_AMOUNT;
+
 @Slf4j
 @RestController
 public class JobController {
@@ -28,18 +30,22 @@ public class JobController {
     }
 
     /**
-     * Main controller method, for handling job search request.
+     * main controller method, for handling job search request.
+     * <p>
+     * also starts a thread for sending jobs to job-keyword app by mq for analysing
+     * job keywords if the request is not for the first page.
      *
      * @return job search result map, key: job id, value: JobDescription
-     * Also starts a thread for sending jobs to job-keyword app by mq for analysing job keywords.
      * @see JobTransitionThread
      */
-    @GetMapping(value = "/job-list/{jobTitle}/{requestId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getRemotiveJobs(@PathVariable String jobTitle, @PathVariable String requestId) {
+    @GetMapping(value = "/job-list/{jobTitle}/{amount}/{requestId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getRemotiveJobs(@PathVariable String jobTitle, @PathVariable int amount, @PathVariable String requestId) {
         log.info("received path variable: {}, requestId: {}", jobTitle, requestId);
-        List<JobDescription> jobDescriptionList = jobDescriptionService.findJobsByTitle(jobTitle, requestId);
+        List<JobDescription> jobDescriptionList = jobDescriptionService.findJobsByTitle(jobTitle, amount, requestId);
         log.info("Get job list for job title: {} success, size: {}", jobTitle, jobDescriptionList.size());
-        JobTransitionThreadPool.submit(jobDescriptionList);
+        if (amount > FIRST_PAGE_AMOUNT) {
+            JobTransitionThreadPool.submit(jobDescriptionList);
+        }
         return ResponseEntity.ok().body(jobDescriptionList.stream().collect(Collectors.toMap(JobDescription::getJobId, Function.identity())));
     }
 }

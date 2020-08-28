@@ -13,4 +13,6 @@ public interface ControllerConst {
     String CATEGORY = "category";
     String COUNT = "count";
 
+    int FIRST_PAGE_AMOUNT = 20;
+
 }

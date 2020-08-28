@@ -18,7 +18,7 @@ class DiceJobDaoTest extends BaseJunitTest {
     @Test
     void findJobDescriptionsByJobTitle() {
         String title = "software developer";
-        List<JobDescription> jobDescriptionList = diceJobDAO.findJobDescriptionsByJobTitle(title);
+        List<JobDescription> jobDescriptionList = diceJobDAO.findJobDescriptionsByJobTitle(title, 10);
         System.out.println(jobDescriptionList);
         assertTrue(jobDescriptionList.size() > 1);
     }
