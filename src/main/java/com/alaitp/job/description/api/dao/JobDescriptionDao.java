@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DiceJobDao extends BaseMapper<JobDescription> {
+public interface JobDescriptionDao extends BaseMapper<JobDescription> {
     List<JobDescription> findJobDescriptionsByJobTitle(@NonNull String jobTitle, @NonNull int amount);
 }

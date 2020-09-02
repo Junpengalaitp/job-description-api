@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.alaitp.job.description.api.dao.DiceJobDao">
-  <resultMap id="BaseResultMap" type="com.alaitp.job.description.api.entity.DiceJob">
-    <id column="job_id" jdbcType="VARCHAR" property="jobId"/>
-    <result column="title" jdbcType="VARCHAR" property="title"/>
-    <result column="company" jdbcType="VARCHAR" property="company"/>
-    <result column="location" jdbcType="VARCHAR" property="location"/>
-    <result column="tags" jdbcType="VARCHAR" property="tags"/>
-    <result column="category" jdbcType="VARCHAR" property="category"/>
-    <result column="job_desc" jdbcType="VARCHAR" property="jobDesc"/>
-    <result column="raw_desc" jdbcType="VARCHAR" property="rawDesc"/>
-    <result column="link" jdbcType="VARCHAR" property="link"/>
+<mapper namespace="com.alaitp.job.description.api.dao.JobDescriptionDao">
+    <resultMap id="BaseResultMap" type="com.alaitp.job.description.api.entity.DiceJob">
+        <id column="job_id" jdbcType="VARCHAR" property="jobId"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="company" jdbcType="VARCHAR" property="company"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="tags" jdbcType="VARCHAR" property="tags"/>
+        <result column="category" jdbcType="VARCHAR" property="category"/>
+        <result column="job_desc" jdbcType="VARCHAR" property="jobDesc"/>
+        <result column="raw_desc" jdbcType="VARCHAR" property="rawDesc"/>
+        <result column="link" jdbcType="VARCHAR" property="link"/>
     <result column="source" jdbcType="VARCHAR" property="source" />
     <result column="state" jdbcType="VARCHAR" property="state" />
     <result column="salary" jdbcType="VARCHAR" property="salary" />

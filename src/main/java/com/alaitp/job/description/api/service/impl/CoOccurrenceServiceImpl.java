@@ -38,17 +38,23 @@ public class CoOccurrenceServiceImpl implements CoOccurrenceService {
 
     @Override
     public String getStandardWord(String word) {
-        String standardWord = valueOperations.get(word);
-        if (standardWord == null) {
-            standardWord = standardWordDao.selectStandardWord(word);
-            if (standardWord != null) {
-                valueOperations.set(word, standardWord);
-            } else {
-                standardWord = word;
-                log.info("no standard word found for word: {}", word);
+        try {
+            String standardWord = valueOperations.get(word);
+            if (standardWord == null) {
+                standardWord = standardWordDao.selectStandardWord(word);
+                if (standardWord != null) {
+                    valueOperations.set(word, standardWord);
+                } else {
+                    standardWord = word;
+                    log.info("no standard word found for word: {}", word);
+                }
             }
+            return standardWord;
+        } catch (Exception e) {
+            log.info("error word: {}", word);
+            e.printStackTrace();
+            return word;
         }
-        return standardWord;
     }
 
     @Override
