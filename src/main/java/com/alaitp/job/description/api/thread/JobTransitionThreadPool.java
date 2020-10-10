@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.concurrent.*;
 
 public class JobTransitionThreadPool {
-
     private JobTransitionThreadPool() {
     }
 

@@ -39,7 +39,7 @@ public class JobController {
      * @see JobTransitionThread
      */
     @GetMapping(value = "/job-list/{jobTitle}/{amount}/{requestId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getRemotiveJobs(@PathVariable String jobTitle, @PathVariable int amount, @PathVariable String requestId) {
+    public ResponseEntity<?> getJobByTitle(@PathVariable String jobTitle, @PathVariable int amount, @PathVariable String requestId) {
         log.info("received path variable: {}, requestId: {}", jobTitle, requestId);
         List<JobDescription> jobDescriptionList = jobDescriptionService.findJobsByTitle(jobTitle, amount, requestId);
         log.info("Get job list for job title: {} success, size: {}", jobTitle, jobDescriptionList.size());

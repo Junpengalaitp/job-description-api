@@ -36,6 +36,12 @@ public class CoOccurrenceServiceImpl implements CoOccurrenceService {
     }
 
 
+    /**
+     * get standard word from cache if exists, else get it from database
+     *
+     * @param word target word, might not be in standard format
+     * @return standard word if standard word exists, else return word
+     */
     @Override
     public String getStandardWord(String word) {
         try {
@@ -46,7 +52,7 @@ public class CoOccurrenceServiceImpl implements CoOccurrenceService {
                     valueOperations.set(word, standardWord);
                 } else {
                     standardWord = word;
-                    log.info("no standard word found for word: {}", word);
+                    log.debug("no standard word found for word: {}", word);
                 }
             }
             return standardWord;
@@ -57,6 +63,14 @@ public class CoOccurrenceServiceImpl implements CoOccurrenceService {
         }
     }
 
+    /**
+     * get top n for correlated words for word by the categories
+     *
+     * @param word       the root word for correlated words
+     * @param topN       top n
+     * @param categories correlated words category
+     * @return map of top n keyword (key: keyword, value: json of count and category))
+     */
     @Override
     public Map<String, Map<String, Object>> getTopRelatedWords(String word, int topN, Set<String> categories) {
         Map<String, Map<String, Object>> topWordMap = new HashMap<>();
