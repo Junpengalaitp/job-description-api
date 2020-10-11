@@ -14,5 +14,6 @@
     SELECT standard_word.standard_word
     FROM "standard_word"
     WHERE other_words ILIKE CONCAT(CONCAT('%%,', #{word, jdbcType=VARCHAR}), ',%%')
+    LIMIT 1
   </select>
 </mapper>
