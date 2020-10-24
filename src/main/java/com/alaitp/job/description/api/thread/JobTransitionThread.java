@@ -1,9 +1,9 @@
 package com.alaitp.job.description.api.thread;
 
+import com.alaitp.job.description.api.JobDescriptionApiApplication;
 import com.alaitp.job.description.api.controller.JobController;
 import com.alaitp.job.description.api.entity.JobDescription;
 import com.alaitp.job.description.api.message.MsgPublisher;
-import com.alaitp.job.description.api.util.ApplicationContextProvider;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class JobTransitionThread implements Runnable {
 
-    private final MsgPublisher msgPublisher = ApplicationContextProvider.getBean(MsgPublisher.class);
+    private final MsgPublisher msgPublisher = JobDescriptionApiApplication.getBean(MsgPublisher.class);
 
     private final List<JobDescription> jobDescriptionList;
 

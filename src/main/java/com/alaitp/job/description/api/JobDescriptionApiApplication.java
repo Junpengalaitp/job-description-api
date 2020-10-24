@@ -5,15 +5,23 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.ApplicationContext;
 
 @Slf4j
 @SpringBootApplication
 @EnableEurekaClient
 @MapperScan("com.alaitp.job.description.api.dao")
 public class JobDescriptionApiApplication {
+
+    public static ApplicationContext applicationContext;
+
     public static void main(String[] args) {
         initLogging();
-        SpringApplication.run(JobDescriptionApiApplication.class, args);
+        applicationContext = SpringApplication.run(JobDescriptionApiApplication.class, args);
+    }
+
+    public static <T> T getBean(Class<T> clazz) {
+        return applicationContext.getBean(clazz);
     }
 
     private static void initLogging() {
