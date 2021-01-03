@@ -1,6 +1,14 @@
 spring:
+  application:
+    name: job-description-api
   cloud:
-    config:
-      name: job-description-api
-      uri: http://localhost:8810
-      profile: dev
+    kubernetes:
+      config:
+        enabled: true
+        name: job-description-api
+        namespace: default
+        sources:
+          - namespace: default
+            name: alaitp-shared
+          - namespace: default
+            name: alaitp-job-description-api
