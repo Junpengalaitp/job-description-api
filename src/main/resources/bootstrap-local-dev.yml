@@ -1,0 +1,15 @@
+# --spring.cloud.bootstrap.name=bootstrap-local-dev
+spring:
+  application:
+    name: job-description-api
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+        name: job-description-api
+        namespace: local-dev
+        sources:
+          - namespace: local-dev
+            name: alaitp-shared
+          - namespace: local-dev
+            name: alaitp-job-description-api

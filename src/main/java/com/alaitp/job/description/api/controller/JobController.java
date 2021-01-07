@@ -46,6 +46,7 @@ public class JobController {
         if (amount > FIRST_PAGE_AMOUNT) {
             JobTransitionThreadPool.submit(jobDescriptionList);
         }
+
         return ResponseEntity.ok().body(jobDescriptionList.stream().collect(Collectors.toMap(JobDescription::getJobId, Function.identity())));
     }
 }
