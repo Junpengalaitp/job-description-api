@@ -3,6 +3,7 @@ import sys
 
 
 app_name = "job_desc"
+docker_tag = app_name + ":" + "prod"
 
 def git_pull():
     run_cmd("git pull")
@@ -39,12 +40,12 @@ def package_jar():
 
 def build_image():
     print_cmd("eval $(minikube docker-env)")
-    print_cmd("docker build --tag=" + app_name + " --force-rm=true .")
+    print_cmd("docker build --tag=" + docker_tag + " --force-rm=true .")
     print_cmd("eval $(minikube docker-env -u)")
 
 def k8s_deploy():
-    print_cmd("minikube kubectl -- delete deployment " + app_name)
-    print_cmd("minikube kubectl -- create deployment " + app_name + " --image=" + docker_tag)
+    print_cmd("kubectl delete deployment " + app_name)
+    print_cmd("kubectl create deployment " + app_name + " --image=" + docker_tag)
 
 
 def run_sudo_cmd(cmd):
