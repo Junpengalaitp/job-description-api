@@ -2,7 +2,7 @@ import os
 import sys
 
 
-app_name = "job_desc"
+app_name = "job-desc"
 docker_tag = app_name + ":" + "prod"
 
 def git_pull():
