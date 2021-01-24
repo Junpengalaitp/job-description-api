@@ -36,7 +36,7 @@ def change_config_file():
 
 def package_jar():
     run_cmd("mvn clean")
-    run_cmd("mvn package")
+    run_cmd("mvn package -Dmaven.test.skip=true")
 
 def build_image():
     print_cmd("eval $(minikube docker-env)")
