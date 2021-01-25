@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -25,14 +26,16 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
      * find job descriptions in sql database by job title, and set request id for each job
      */
     @Override
-    public List<JobDescription> findJobsByTitle(@NonNull String jobTitle, int amount, String requestId) {
+    public Collection<JobDescription> findJobsByTitle(@NonNull String jobTitle, int amount, String requestId) {
         List<JobDescription> jobDescriptionList = jobDescriptionDAO.findJobDescriptionsByJobTitle(jobTitle, amount);
         log.info("selected {} jobs with title: {} from SQL", jobDescriptionList.size(), jobTitle);
-        jobDescriptionList.forEach(d -> {
-            d.setRequestId(requestId);
-            trimTag(d);
-        });
-        return jobDescriptionList;
+
+        return jobDescriptionList.stream()
+                .peek(jd -> {
+                    jd.setRequestId(requestId);
+                    trimTag(jd);
+                })
+                .collect(Collectors.toList());
     }
 
     @Override

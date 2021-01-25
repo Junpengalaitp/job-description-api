@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -41,7 +41,7 @@ public class JobController {
     @GetMapping(value = "/job-list/{jobTitle}/{amount}/{requestId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getJobByTitle(@PathVariable String jobTitle, @PathVariable int amount, @PathVariable String requestId) {
         log.info("received path variable: {}, requestId: {}", jobTitle, requestId);
-        List<JobDescription> jobDescriptionList = jobDescriptionService.findJobsByTitle(jobTitle, amount, requestId);
+        Collection<JobDescription> jobDescriptionList = jobDescriptionService.findJobsByTitle(jobTitle, amount, requestId);
         log.info("Get job list for job title: {} success, size: {}", jobTitle, jobDescriptionList.size());
         if (amount > FIRST_PAGE_AMOUNT) {
             JobTransitionThreadPool.submit(jobDescriptionList);

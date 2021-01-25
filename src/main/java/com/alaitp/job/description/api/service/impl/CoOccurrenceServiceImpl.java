@@ -29,7 +29,8 @@ public class CoOccurrenceServiceImpl implements CoOccurrenceService {
     private final ValueOperations<String, String> valueOperations;
 
     @Autowired
-    public CoOccurrenceServiceImpl(StandardWordDao standardWordDao, CoOccurrenceMatrixDao coOccurrenceMatrixDao, ValueOperations<String, String> valueOperations) {
+    public CoOccurrenceServiceImpl(StandardWordDao standardWordDao, CoOccurrenceMatrixDao coOccurrenceMatrixDao,
+                                   ValueOperations<String, String> valueOperations) {
         this.standardWordDao = standardWordDao;
         this.coOccurrenceMatrixDao = coOccurrenceMatrixDao;
         this.valueOperations = valueOperations;

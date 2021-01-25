@@ -18,7 +18,7 @@ public interface CategoryConst {
     String PS = "POSITION";  // specific job position, personal
     String WE = "WORK_EXPERIENCE";  // years of work experience
     String OS = "OS";  // operating system
-    String SV = "SERVER";  // Nginx, Tomcat, Node,js
+    String SV = "SERVER";  // Nginx, Tomcat, Node.js
     String AP = "APPROACH";  // software development approach e.g. TDD, AGILE
     String SE = "SOFTWARE_ENGINEERING";  // software engineering process e.g development, testing, optimization
     String PF = "PLATFORM";  // platforms for software development e.g AWS, Github
