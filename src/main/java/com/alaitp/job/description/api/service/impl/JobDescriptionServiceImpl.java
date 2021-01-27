@@ -26,7 +26,7 @@ public class JobDescriptionServiceImpl implements JobDescriptionService {
      * find job descriptions in sql database by job title, and set request id for each job
      */
     @Override
-    public Collection<JobDescription> findJobsByTitle(@NonNull String jobTitle, int amount, String requestId) {
+    public List<JobDescription> findJobsByTitle(@NonNull String jobTitle, int amount, String requestId) {
         List<JobDescription> jobDescriptionList = jobDescriptionDAO.findJobDescriptionsByJobTitle(jobTitle, amount);
         log.info("selected {} jobs with title: {} from SQL", jobDescriptionList.size(), jobTitle);
 
