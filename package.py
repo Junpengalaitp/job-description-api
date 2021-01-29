@@ -37,7 +37,7 @@ def change_config_file():
 
 def package_jar():
     run_cmd("mvn clean")
-    run_cmd("mvn package")
+    run_cmd("mvn package -Dmaven.test.skip=true")
 
 def build_image():
     run_cmd("docker build --tag=" + app_name + " --force-rm=true .")
