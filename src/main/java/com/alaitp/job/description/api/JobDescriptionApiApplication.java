@@ -9,6 +9,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.event.EventListener;
 
+import java.lang.management.ManagementFactory;
+
 @Slf4j
 @EnableDiscoveryClient
 @MapperScan("com.alaitp.job.description.api.dao")
@@ -32,5 +34,7 @@ public class JobDescriptionApiApplication {
         log.info("** The version of the JVM you are running is : " + System.getProperty("java.version", defaultVal));
         log.info("** Your user home directory is : " + System.getProperty("user.home", defaultVal));
         log.info("** Your JRE installation directory is : " + System.getProperty("java.home", defaultVal));
+        log.info("** Amount of Your CPU cores : " + Runtime.getRuntime().availableProcessors());
+        log.info("** Amount of Your JVM memory: " + (double) ManagementFactory.getMemoryMXBean().getHeapMemoryUsage().getInit() / 1073741.824 + "MB");
     }
 }
