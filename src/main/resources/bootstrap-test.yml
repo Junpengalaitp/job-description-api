@@ -6,9 +6,9 @@ spring:
       config:
         enabled: true
         name: job-description-api
-        namespace: local-dev
+        namespace: test
         sources:
-          - namespace: local-dev
+          - namespace: test
             name: alaitp-shared
-          - namespace: local-dev
+          - namespace: test
             name: alaitp-job-desc
