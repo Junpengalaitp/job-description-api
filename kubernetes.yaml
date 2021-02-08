@@ -50,9 +50,8 @@ metadata:
   labels:
     app: job-desc
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 8815
-      nodePort: 31815
   selector:
     app: job-desc
