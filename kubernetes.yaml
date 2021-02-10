@@ -36,7 +36,7 @@ spec:
       containers:
         - name: job-desc
           image: localhost:5555/job-desc
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8815
 ---
