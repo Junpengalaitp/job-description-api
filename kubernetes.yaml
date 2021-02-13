@@ -52,3 +52,20 @@ spec:
     - port: 8815
   selector:
     app: job-desc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: job-desc-node-port
+  labels:
+    app: job-desc
+spec:
+  type: NodePort
+  selector:
+    app: job-desc
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+      nodePort: 30815
