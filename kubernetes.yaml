@@ -66,6 +66,6 @@ spec:
     app: job-desc
   ports:
     - protocol: TCP
-      port: 5432
-      targetPort: 5432
+      port: 8815
+      targetPort: 8815
       nodePort: 30815
