@@ -4,7 +4,7 @@ job-description-api
 
 ## Author
 
-* **Junpeng He** - *Initial work* - [alaitp](https://junpengalaitp.github.io/alaitp-frontend/)
+* **Junpeng He** - *Initial work* - [junpenghe.com](https://junpenghe.com)
 
 ## Main Feature
 * search jobs by user input and return job list to frontend
